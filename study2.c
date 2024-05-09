@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conio.h>
 
 int main () {
     int num;
@@ -10,6 +11,8 @@ int main () {
     printf("%d", num);
 
     printf("\nHello World\n");
+
+    getch();
 
     return 0;
 }

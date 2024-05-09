@@ -1,10 +1,15 @@
 #include <stdio.h>
+#include <conio.h>
 
 int SMP(int area); // SMP = Solve Math Problem
 
-void main()
+int main()
 {
     printf("%d", SMP(2));
+
+    getch();
+
+    return 0;
 }
 
 int SMP(int area)
