@@ -7,7 +7,7 @@
 
 
         void (*draw)();
-    }Rect
+    }Rect;
 
     Rect* newRect(int* First[2],int* Second[2], int* Third[2], int* Fourth[2])
     {
