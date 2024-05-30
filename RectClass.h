@@ -1,20 +1,26 @@
 #ifndef _RectClass_h_
 #define _RectClass_h_
-    typedef struct
+    typedef struct Rect
     {
-        Rect* this;
-        int dotPos[4][2];
-
+        struct Rect* this;
+        
+        unsigned int height, width;
 
         void (*draw)();
     }Rect;
 
-    Rect* newRect(int* First[2],int* Second[2], int* Third[2], int* Fourth[2])
-    {
-        Rect* temp = (Rect*)malloc(sizeof(Rect));
+    Rect* newRect(unsigned int height, unsigned int width);
+    void draw_(const Rect* this);
 
-        temp->dotPos = {{First[0], First[1]}, {Second[0], Second[1]}, {Third[0], Third[1]}, {Fourth[0], Fourth[1]}};
+    Rect* newRect(unsigned int height, unsigned int width)
+    {
+        Rect* temp = malloc(sizeof(Rect));
+
         temp->this = temp;
+
+        temp->height = height;
+        temp->width = width;
+
         temp->draw = draw_;
 
         return temp;
@@ -22,19 +28,17 @@
 
     void draw_(const Rect* this)
     {
-        for(int i = 0; i < 100; i++)
+        for(int y = 0; y < this->height; y++)
         {
-            for (int j = 0; j < 100; j++)
+            for (int x = 0; x < this->width; x++)
             {
-                for(int k = 0; k < 4; k++)
-                {
-                    if(this->dotPos[k][0] == i && this->dotPos[k][1] == j)
-                        printf("#");
-                    else
-                        printf("_");
-                }
+                printf("#");
             }
+
+            printf("\n");
         }
+
+        printf("\n");
 
         return;
     }
@@ -45,4 +49,4 @@
 
         return;
     }
-#endif _RectClass_h_
+#endif
