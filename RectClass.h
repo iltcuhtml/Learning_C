@@ -3,23 +3,23 @@
     typedef struct Rect
     {
         struct Rect* this;
-        
-        unsigned int height, width;
+
+        unsigned int width, height;
 
         void (*draw)();
     }Rect;
 
-    Rect* newRect(unsigned int height, unsigned int width);
+    Rect* newRect(unsigned int width, unsigned int height);
     void draw_(const Rect* this);
 
-    Rect* newRect(unsigned int height, unsigned int width)
+    Rect* newRect(unsigned int width, unsigned int height)
     {
         Rect* temp = malloc(sizeof(Rect));
 
         temp->this = temp;
 
-        temp->height = height;
         temp->width = width;
+        temp->height = height;
 
         temp->draw = draw_;
 
