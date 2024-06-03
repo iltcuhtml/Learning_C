@@ -7,15 +7,15 @@
         void (*delete)();
     } Rect;
 
-    Rect newRect(unsigned int width, unsigned int height);
-    void drawRect(Rect rect);
-    void deleteRect(Rect rect);
+    Rect* newRect(unsigned int width, unsigned int height);
+    void drawRect(Rect* rect);
+    void deleteRect(Rect* rect);
 
-    Rect newRect(unsigned int width, unsigned int height) {
-        Rect *rect = malloc(sizeof(Rect));
+    Rect* newRect(unsigned int width, unsigned int height) {
+        Rect* rect = (Rect* )malloc(sizeof(Rect));
 
         if (rect == NULL) {
-            printf("malloc() failed\n");
+            printf("\n\nmalloc() failed\n\n");
 
             exit(1);
         }
@@ -26,19 +26,19 @@
         rect->draw = drawRect;
         rect->delete = deleteRect;
 
-        return *rect;
+        return rect;
     }
 
-    void drawRect(Rect rect) {
-        // if (rect == NULL)
-        // {
-        //     printf("Rect is NULL\n");
+    void drawRect(Rect* rect) {
+        if (rect == NULL)
+        {
+            printf("\n\ndrawRect: Rect is NULL\n\n");
 
-        //     return;
-        // }
+            return;
+        }
 
-        for (int y = 0; y < rect.height; y++) {
-            for (int x = 0; x < rect.width; x++) {
+        for (int y = 0; y < rect->height; y++) {
+            for (int x = 0; x < rect->width; x++) {
                 printf("#");
             }
 
@@ -46,19 +46,16 @@
         }
 
         printf("\n");
-
-        return;
     }
 
-    void deleteRect(Rect rect) {
-        // if (rect == NULL)
-        // {
-        //     printf("Rect is NULL\n");
+    void deleteRect(Rect* rect) {
+        if (rect == NULL)
+        {
+            printf("\n\ndeleteRect: Rect is NULL\n\n");
 
-        //     return;
-        // }
+            return;
+        }
 
-        free(&rect);
-    
+        free(rect);
     }
 #endif
