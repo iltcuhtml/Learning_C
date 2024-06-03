@@ -15,9 +15,9 @@ int main(void)
     Rect2.draw(Rect2);
     Rect3.draw(Rect3);
 
-    deleteRect(Rect1);
-    deleteRect(Rect2);
-    deleteRect(Rect3);
+    Rect1.delete(Rect1);
+    Rect2.delete(Rect2);
+    Rect3.delete(Rect3);
 
     getch();
     
