@@ -1,5 +1,6 @@
 #ifndef _RectClass_h_
-#define _RectClass_h_
+    #define _RectClass_h_
+    
     typedef struct Rect
     {
         unsigned int width, height;
