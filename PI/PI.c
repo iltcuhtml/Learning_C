@@ -3,8 +3,8 @@
 
 #include <conio.h>
 
-void setValues();
-void saveValues();
+void setValues(unsigned int n, double value);
+void saveValues(unsigned int n, double value);
 
 int main(void)
 {
@@ -12,7 +12,7 @@ int main(void)
     double value = 0;
     double PI;
 
-    setValues();
+    setValues(n, value);
 
     for (;;)
     {
@@ -25,7 +25,7 @@ int main(void)
         printf("PI : %le\n", PI);
         printf("오차 : %le\n\n", M_PI - PI);
 
-        saveValues();
+        saveValues(n, value);
     }
 
     getch();
@@ -33,7 +33,7 @@ int main(void)
     return 0;
 }
 
-void setValues()
+void setValues(unsigned int n, double value)
 {
     FILE* fp = fopen("PI.txt", "r");
 
@@ -42,24 +42,24 @@ void setValues()
         fclose(fp);
 
         fp = fopen("PI.txt", "w");
-        fprintf(fp, "%d %d", n, value);
+        fprintf(fp, "%d %le", n, value);
 
         fclose(fp);
 
         return;
     }
 
-    fscanf(fp, "%d%d", &n, &value);
+    fscanf(fp, "%d%le", &n, &value);
 
     fclose(fp);
 
     return;
 }
 
-void saveValues()
+void saveValues(unsigned int n, double value)
 {
     FILE* fp = fopen("PI.txt", "w");
-    fprintf(fp, "%d %d", n, value);
+    fprintf(fp, "%d %le", n, value);
 
     fclose(fp);
 
