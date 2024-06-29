@@ -7,6 +7,7 @@ int main(void)
 {
     unsigned int n = 1;
     double value = 0;
+    double PI = 0;
 
     for (;;)
     {
