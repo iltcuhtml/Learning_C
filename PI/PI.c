@@ -1,31 +1,33 @@
 #include <stdio.h>
+
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 #include <conio.h>
 
-void setValues(unsigned int n, double value);
-void saveValues(unsigned int n, double value);
+unsigned int n = 1;
+long double value = 0.0L;
+long double PI = 0.0L;
+
+void setValues(); // has problem with load the values
+void saveValues();
 
 int main(void)
 {
-    unsigned int n = 1;
-    double value = 0;
-    double PI;
-
-    setValues(n, value);
+    setValues();
 
     for (;;)
     {
-        value += 1 / pow(n, 2);
-        n++;
-
-        PI = sqrt(value * 6);
+        value += 1.0L / pow(n, 2.0L);
+        PI = sqrt(value * 6.0L);
 
         printf("n : %u\n", n);
-        printf("PI : %le\n", PI);
-        printf("오차 : %le\n\n", M_PI - PI);
+        printf("PI : %.64Lf\n", PI);
+        printf("dif : %.64Lf\n\n", M_PI - PI);
+        
+        n++;
 
-        saveValues(n, value);
+        saveValues();
     }
 
     getch();
@@ -33,33 +35,26 @@ int main(void)
     return 0;
 }
 
-void setValues(unsigned int n, double value)
+void setValues()
 {
     FILE* fp = fopen("PI.txt", "r");
 
     if (fp == NULL)
     {
-        fclose(fp);
-
-        fp = fopen("PI.txt", "w");
-        fprintf(fp, "%d %le", n, value);
-
-        fclose(fp);
-
         return;
     }
 
-    fscanf(fp, "%d%le", &n, &value);
+    fscanf(fp, "%u %Lf", &n, &value);
 
     fclose(fp);
 
     return;
 }
 
-void saveValues(unsigned int n, double value)
+void saveValues()
 {
     FILE* fp = fopen("PI.txt", "w");
-    fprintf(fp, "%d %le", n, value);
+    fprintf(fp, "%u %.64Lf\n\n", n, value);
 
     fclose(fp);
 
