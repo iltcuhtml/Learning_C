@@ -41,9 +41,9 @@
             return;
         }
 
-        for (unsigned long int y = 0; y < _circle->_radius * 2; y++)
+        for (long int y = 0; y < _circle->_radius * 2; y++)
         {
-            for (unsigned long int x = 0; x < _circle->_radius * 2; x++)
+            for (long int x = 0; x < _circle->_radius * 2; x++)
             {
                 if (pow(x - _circle->_radius, 2) + pow(y - _circle->_radius, 2) <= pow(_circle->_radius, 2))
                 {
